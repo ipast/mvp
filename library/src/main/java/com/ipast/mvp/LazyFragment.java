@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 public abstract class LazyFragment<P extends BasePresenter> extends BaseFragment<P> {
     private boolean isCanLoadData;
+    protected boolean mFirstLoadData = true;
     private final String TAG = getClass().getSimpleName();
 
     @Override
@@ -26,8 +27,6 @@ public abstract class LazyFragment<P extends BasePresenter> extends BaseFragment
         }
     }
 
-    //当前Fragment可见时加载
-    protected abstract void lazyLoad();
 
     @Override
     public void onResume() {
@@ -36,6 +35,23 @@ public abstract class LazyFragment<P extends BasePresenter> extends BaseFragment
             lazyLoad();
             // Log.d(TAG, "lazyLoad()");
         }
+    }
+
+    //当前Fragment可见时加载
+    protected abstract void lazyLoad();
+
+    //加载数据，Activity调用
+    public void loadData() {
+
+    }
+
+    //是否为第一次加载数据
+    protected boolean isFirstLoadData() {
+        if (mFirstLoadData) {
+            mFirstLoadData = false;
+            return true;
+        }
+        return false;
     }
 
     @Override
