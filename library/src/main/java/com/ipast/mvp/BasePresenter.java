@@ -4,6 +4,7 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 public abstract class BasePresenter<M extends BaseModel, V extends IBaseView> {
     private final String TAG = getClass().getSimpleName();
